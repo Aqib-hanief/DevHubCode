@@ -1,0 +1,68 @@
+﻿@model ModelLayer.ViewModels.AddEducationVM
+
+@{
+    ViewBag.Title = "AddEducation";
+}
+
+
+
+
+    <section class="container">
+        <h1 class="large text-primary">
+            Add Your Education
+        </h1>
+        <p class="lead">
+            <i class="fas fa-graduation-cap"></i> Add any school, bootcamp, etc that
+            you have attended
+        </p>
+        <small class="text-danger">* = required field</small>
+        <form class="form" action="/Profile/AddEducation" method="post">
+            <div class="form-group">
+                @Html.EditorFor(model => model.School, new { htmlAttributes = new { @class = "form-control" , Placeholder = "* School or Bootcamp"} })
+                @Html.ValidationMessageFor(model => model.School, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(model => model.Degree, new { htmlAttributes = new { @class = "form-control", Placeholder = "* Degree or Certificate" } })
+                @Html.ValidationMessageFor(model => model.Degree, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(model => model.FieldOfStudy, new { htmlAttributes = new { @class = "form-control", Placeholder = "* Field of study" } })
+                @Html.ValidationMessageFor(model => model.FieldOfStudy, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <h4>From Date</h4>
+                @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <h4>To Date</h4>
+                @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <p>
+                    @Html.CheckBoxFor(model => model.IsCurrent) Current School
+                </p>
+            </div>
+            <div class="form-group">
+                <textarea name="Description"
+                          cols="30"
+                          rows="5"
+                          placeholder="Program Description" class="form-control" data-val="true" data-val-required="The Description field is required." id="Description"></textarea>
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+            <input type="submit" class="btn btn-primary my-1" />
+            <a class="btn my-1" href="@Url.Action("Dashboard","Home")">Go Back</a>
+        </form>
+    </section>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,100 @@
+﻿@model ModelLayer.ViewModels.ProfileVM
+
+@{
+    ViewBag.Title = "EditProfile";
+}
+
+<section class="container">
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Message
+        </div>
+    }
+    <h1 class="large text-primary">
+        Edit Profile
+    </h1>
+    <p class="lead">
+        <i class="fas fa-user"></i> Let's get some information to make your
+        profile stand out
+    </p>
+    <small class="text-danger">* = required fields</small>
+    <form class="form" action="@Url.Action("EditProfile","Profile")" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <div class="edit-img">
+                <img name="ImagePath" id="newavatar" class="round-img small-image" src="@Url.Content(Model.Imagepath??ModelLayer.Profile.defaultImage)" alt="Profile Pic img not found" />
+            </div>
+
+            <input class="form-control mt-2" id="Image" onchange="changeImage()" name="Image" type="file" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="Image" data-valmsg-replace="true"></span>
+            <small class="form-text">Change Profile Picture</small>
+
+
+        </div>
+        <div class="form-group">
+
+            @Html.DropDownListFor(model => model.ProfessionalStatusId, null, "* Select Professional Status ", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProfessionalStatusId, "", new { @class = "text-danger" })
+
+            <small class="form-text">Give us an idea of where you are at in your career</small>
+        </div>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control", placeholder = "Website" } })
+            @Html.ValidationMessageFor(model => model.Website, "", new { @class = "text-danger" })
+            <small class="form-text">Could be your own or a company website</small>
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Address" } })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            <small class="form-text">City & state suggested (eg. Kashmir, Srinagar)</small>
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.Skills, new { htmlAttributes = new { @class = "form-control", placeholder = "* Skills" } })
+            @Html.ValidationMessageFor(model => model.Skills, "", new { @class = "text-danger" })
+            <small class="form-text">
+                Please use comma separated values (eg.
+                HTML,CSS,JavaScript,PHP)
+            </small>
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.GitHubUsername, new { htmlAttributes = new { @class = "form-control", placeholder = "GitHub Username" } })
+            @Html.ValidationMessageFor(model => model.GitHubUsername, "", new { @class = "text-danger" })
+            <small class="form-text">
+                If you want your latest repos and a Github link, include your
+                username
+            </small>
+        </div>
+        <div class="form-group">
+
+            @Html.TextAreaFor(model => model.Bio, new
+            {
+                @class = "form-control",
+                placeholder = "A short bio of yourself",
+                cols = "30",
+                      rows = "5"
+            })
+            @Html.ValidationMessageFor(model => model.Bio, "", new { @class = "text-danger" })
+
+            <small class="form-text">Tell us a little about yourself</small>
+        </div>
+
+        <input type="submit"  value="Save" class="btn btn-primary my-1" />
+
+        <a class="btn my-1" href="@Url.Action("Dashboard","Home")">Go Back</a>
+    </form>
+
+</section>
+
+<script>
+
+
+    function changeImage() {
+        
+        let temp = $('#Image').val();      
+        console.log('hi',temp);
+        $('#newavatar').src = $("#Image").val();
+    }
+
+   
+</script>

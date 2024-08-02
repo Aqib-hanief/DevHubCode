@@ -1,0 +1,45 @@
+﻿@model ModelLayer.RegisterVM
+
+@{
+    ViewBag.Title = "SignUp";
+}
+
+
+<section class="container">
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Message
+        </div>
+    }
+    <h1 class="large text-primary">
+        Sign Up
+    </h1>
+    <p class="lead"><i class="fas fa-user"></i> Create your Account</p>
+    <form class="form" action="/Account/SignUp" method="post">
+        <div class="form-group">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Name" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirm Password" } })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+
+        </div>
+        <input type="submit" id="submit" value="Register" class="btn btn-primary" />
+    </form>
+
+    <p class="my-1">
+        Already have an account? <a href="@Url.Action("Login")">Sign In</a>
+    </p>
+</section>
+
+

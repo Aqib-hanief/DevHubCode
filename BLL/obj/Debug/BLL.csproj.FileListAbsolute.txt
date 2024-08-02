@@ -1,0 +1,17 @@
+C:\Data\DevHub\BLL\bin\Debug\BLL.dll
+C:\Data\DevHub\BLL\bin\Debug\BLL.pdb
+C:\Data\DevHub\BLL\bin\Debug\DAL.dll
+C:\Data\DevHub\BLL\bin\Debug\ModelLayer.dll
+C:\Data\DevHub\BLL\bin\Debug\EntityFramework.dll
+C:\Data\DevHub\BLL\bin\Debug\DAL.pdb
+C:\Data\DevHub\BLL\bin\Debug\DAL.dll.config
+C:\Data\DevHub\BLL\bin\Debug\ModelLayer.pdb
+C:\Data\DevHub\BLL\bin\Debug\EntityFramework.xml
+C:\Data\DevHub\BLL\obj\Debug\BLL.dll
+C:\Data\DevHub\BLL\obj\Debug\BLL.pdb
+C:\Data\DevHub\BLL\bin\Debug\BLL.dll.config
+C:\Data\DevHub\BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Data\DevHub\BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Data\DevHub\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+C:\Data\DevHub\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Data\DevHub\BLL\obj\Debug\BLL.csproj.CopyComplete

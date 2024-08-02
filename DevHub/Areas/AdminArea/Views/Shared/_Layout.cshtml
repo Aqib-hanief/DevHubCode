@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="~/Content/AdminStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <title>@ViewBag.Title - Devhub Admin</title>
+    
+   
+    
+</head>
+<body>
+    <nav class="side-nav">
+        <div class="brand">
+            <a href="#"><i class="fas fa-code"></i><span> Devhub</span></a>
+        </div>
+        <ul>
+            <li><a href="#"><i class="fa fa-user"></i><span> Home</span></a></li>
+            <li><a href="#"><i class="fa fa-user"></i><span> Home</span></a></li>
+            <li><a href="#"><i class="fa fa-user"></i><span> Home</span></a></li>
+            <li><a href="#"><i class="fa fa-user"></i><span> Home</span></a></li>
+        </ul>
+        <div class="backbtn">
+            <span> < </span>
+        </div>
+    </nav>
+    <section class="main-content">
+        <div class="topNav">
+            <ul>
+                <li><a href="#"><i class="fas fa-bell"></i> Notifications</a></li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="container">
+            @RenderBody();
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $('.backbtn').click(function () {
+                $('.side-nav').toggleClass('toggle')
+                if ($('.side-nav').hasClass('toggle')) {
+                    $('.backbtn span').text('>')
+                    $('.side-nav ul li span').addClass('hide-sm')
+                    $('.brand span').addClass('hide-sm')
+                }
+                else {
+                    $('.backbtn span').text('<')
+                    $('.side-nav ul li span').removeClass('hide-sm')
+                    $('.brand span').removeClass('hide-sm')
+                }
+            });
+        });
+    </script>
+</body>
+</html>

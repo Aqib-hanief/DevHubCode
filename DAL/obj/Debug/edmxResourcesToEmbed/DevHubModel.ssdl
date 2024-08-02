@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DevHubDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AccountConfirmation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ImagePath" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="Salt" Type="nvarchar(max)" />
+    <Property Name="ResetCode" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="UserRole" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DevPosts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AccountId" Type="uniqueidentifier" />
+    <Property Name="Post" Type="nvarchar(max)" />
+    <Property Name="PostedOn" Type="date" />
+    <Property Name="Likes" Type="int" />
+    <Property Name="Dislikes" Type="int" />
+  </EntityType>
+  <EntityType Name="Discussion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PostId" Type="uniqueidentifier" />
+    <Property Name="AccountId" Type="uniqueidentifier" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+    <Property Name="CommentedOn" Type="date" />
+  </EntityType>
+  <EntityType Name="Education">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AccountId" Type="uniqueidentifier" />
+    <Property Name="School" Type="nvarchar" MaxLength="100" />
+    <Property Name="Degree" Type="nvarchar" MaxLength="200" />
+    <Property Name="FieldOfStudy" Type="nvarchar(max)" />
+    <Property Name="FromDate" Type="date" />
+    <Property Name="ToDate" Type="date" />
+    <Property Name="IsCurrent" Type="bit" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Experiences">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AccountId" Type="uniqueidentifier" />
+    <Property Name="JobTitle" Type="nvarchar" MaxLength="100" />
+    <Property Name="Company" Type="nvarchar" MaxLength="200" />
+    <Property Name="Location" Type="nvarchar(max)" />
+    <Property Name="FromDate" Type="date" />
+    <Property Name="ToDate" Type="date" />
+    <Property Name="IsCurrentJob" Type="bit" />
+    <Property Name="JobDescription" Type="nvarchar(max)" />
+    <Property Name="Position" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Professions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProfessionalStatus" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Profiles">
+    <Key>
+      <PropertyRef Name="AccountId" />
+    </Key>
+    <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProfessionId" Type="uniqueidentifier" />
+    <Property Name="Website" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Skills" Type="nvarchar(max)" />
+    <Property Name="GitHubUsername" Type="nvarchar" MaxLength="30" />
+    <Property Name="Bio" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SocialLinks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AccountId" Type="uniqueidentifier" />
+    <Property Name="Link" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK__AccountConfi__Id__6FE99F9F">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="AccountConfirmation" Type="Self.AccountConfirmation" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountConfirmation">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DevPosts__Accoun__33D4B598">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="DevPosts" Type="Self.DevPosts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DevPosts">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Discussio__Accou__37A5467C">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="Discussion" Type="Self.Discussion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Discussion">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Discussio__PostI__36B12243">
+    <End Role="DevPosts" Type="Self.DevPosts" Multiplicity="0..1" />
+    <End Role="Discussion" Type="Self.Discussion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DevPosts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Discussion">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Education__Accou__30F848ED">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="Education" Type="Self.Education" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Education">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Experienc__Accou__2E1BDC42">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="Experiences" Type="Self.Experiences" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Experiences">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Profiles__Accoun__276EDEB3">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="Profiles" Type="Self.Profiles" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Profiles">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Profiles__Profes__286302EC">
+    <End Role="Professions" Type="Self.Professions" Multiplicity="0..1" />
+    <End Role="Profiles" Type="Self.Profiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Profiles">
+        <PropertyRef Name="ProfessionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SocialLin__Accou__04E4BC85">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="SocialLinks" Type="Self.SocialLinks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialLinks">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DevHubDBModelStoreContainer">
+    <EntitySet Name="AccountConfirmation" EntityType="Self.AccountConfirmation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DevPosts" EntityType="Self.DevPosts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Discussion" EntityType="Self.Discussion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Experiences" EntityType="Self.Experiences" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Professions" EntityType="Self.Professions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SocialLinks" EntityType="Self.SocialLinks" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__AccountConfi__Id__6FE99F9F" Association="Self.FK__AccountConfi__Id__6FE99F9F">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="AccountConfirmation" EntitySet="AccountConfirmation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DevPosts__Accoun__33D4B598" Association="Self.FK__DevPosts__Accoun__33D4B598">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="DevPosts" EntitySet="DevPosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Discussio__Accou__37A5467C" Association="Self.FK__Discussio__Accou__37A5467C">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Discussion" EntitySet="Discussion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Discussio__PostI__36B12243" Association="Self.FK__Discussio__PostI__36B12243">
+      <End Role="DevPosts" EntitySet="DevPosts" />
+      <End Role="Discussion" EntitySet="Discussion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Education__Accou__30F848ED" Association="Self.FK__Education__Accou__30F848ED">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Education" EntitySet="Education" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Experienc__Accou__2E1BDC42" Association="Self.FK__Experienc__Accou__2E1BDC42">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Experiences" EntitySet="Experiences" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Profiles__Accoun__276EDEB3" Association="Self.FK__Profiles__Accoun__276EDEB3">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Profiles" EntitySet="Profiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Profiles__Profes__286302EC" Association="Self.FK__Profiles__Profes__286302EC">
+      <End Role="Professions" EntitySet="Professions" />
+      <End Role="Profiles" EntitySet="Profiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SocialLin__Accou__04E4BC85" Association="Self.FK__SocialLin__Accou__04E4BC85">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="SocialLinks" EntitySet="SocialLinks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

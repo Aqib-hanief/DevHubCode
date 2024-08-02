@@ -1,0 +1,300 @@
+﻿
+@model ModelLayer.Profile
+@{
+    ViewBag.Title = "Viewprofile";
+}
+
+
+
+<section class="container" style="user-select:none;">
+    <a href="@Url.Action("Dashboard","Home")" class="btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+
+    <div class="profile-grid my-1">
+
+        @*   -----TOP----     *@
+
+        <div class="profile-top bg-primary p-2">
+            <img class="round-img my-1" src="@Url.Content(Model.Account.ImagePath ?? ModelLayer.Profile.defaultImage)" alt="image not found" />
+            <h1 class="large">@Model.Account.Name</h1>
+            <p class="lead">
+                @Model.Profession.ProfessionalStatus @{
+                    if (Model.Account.Experiences.Count > 0)
+                    {
+                        <text>at</text>
+                        @Model.Account.Experiences.FirstOrDefault(x => x.IsCurrentJob == true).Company
+                    }
+
+
+                }
+            </p>
+            <p>@Model.Address</p>
+            <div class="icons my-1">
+                <a href="@Model.Website" target="_blank">
+                    <i class="fas fa-globe fa-2x"></i>
+                </a>
+                <a id="twitter" href="#" target="_blank">
+                    <i class="fab fa-twitter fa-2x"></i>
+                </a>
+                <a id="facebook" href="#" target="_blank">
+                    <i class="fab fa-facebook fa-2x"></i>
+                </a>
+                <a id="linkedin" href="#" target="_blank">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+                <a id="instagram" href="#" target="_blank">
+                    <i class="fab fa-instagram fa-2x"></i>
+                </a>
+            </div>
+            @if (ViewBag.isSame == true)
+            {
+                <div class="social-input-btn">
+                    <div class="tooltip">
+                        <button id="myBtn" class="btn"><i class="far fa-edit text-primary"></i></button>
+                        <span class="tooltipright">Edit Links</span>
+                    </div>
+                </div>
+                <!-- Social links Modal -->
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <br />
+                        <form id="socialLinksForm">
+                            <p>
+                                <div class="form-group social-input">
+                                    <i class="fab fa-twitter fa-2x"></i>
+                                    <input type="text" placeholder="Twitter Username" name="Twitter" class="form-control" />
+                                </div>
+                                <div class="form-group social-input">
+                                    <i class="fab fa-facebook fa-2x"></i>
+                                    <input type="text" placeholder="Facebook Username" name="Facebook" class="form-control" />
+                                </div>
+                                <div class="form-group social-input">
+                                    <i class="fab fa-youtube fa-2x"></i>
+                                    <input type="text" placeholder="YouTube Username" name="Youtube" class="form-control" />
+                                </div>
+                                <div class="form-group social-input">
+                                    <i class="fab fa-linkedin fa-2x"></i>
+                                    <input type="text" placeholder="Linkedin Username" name="Linkedin" class="form-control" />
+                                </div>
+                                <div class="form-group social-input">
+                                    <i class="fab fa-instagram fa-2x"></i>
+                                    <input type="text" placeholder="Instagram Username" name="Instagram" class="form-control" />
+                                </div>
+                                <input type="button" onclick="updateSocialLinks()" value="Save" class="btn btn-primary my-1" />
+
+                            </p>
+                        </form>
+                    </div>
+
+                </div>
+            }
+
+
+        </div>
+
+        @*    -----ABOUT part------  *@
+
+        <div class="profile-about bg-light p-2">
+            <h2 class="text-primary">Bio</h2>
+            <p>
+                @Model.Bio
+            </p>
+            <div class="line"></div>
+
+            <h2 class="text-primary">Skill Set</h2>
+            <div class="skills">
+                @{
+
+                    string[] skills = Model.Skills.Split(',');
+
+                    foreach (var item in skills)
+                    {
+                        <div class="p-1">
+                            <i class="fas fa-check"></i> @item.Trim()
+                        </div>
+                    }
+                }
+
+
+            </div>
+        </div>
+
+        @*    -----Experience part------  *@
+
+
+        @if (Model.Account.Experiences != null)
+        {
+            <div class="profile-exp bg-light p-2">
+                <h2 class="text-primary">Experiences</h2>
+                @foreach (var item in Model.Account.Experiences)
+                {
+                    <div>
+                        <h3>@item.Company</h3>
+                        @{
+                            dynamic toDate = item.ToDate == null ? null : Convert.ToDateTime(item.ToDate).ToString("dd MMMM yyyy");
+                            toDate = toDate ?? "Current";
+                        }
+                        <p>@Convert.ToDateTime(item.FromDate).ToString("dd MMMM yyyy") - @toDate</p>
+                        <p><strong>Position: </strong>@item.Position</p>
+                        <p>
+                            <strong>Description: </strong> @item.JobDescription
+                        </p>
+                    </div>
+                }
+
+
+            </div>
+        }
+
+
+        @*    -----Education part------  *@
+
+        @if (Model.Account.Educations != null)
+        {
+            <div class="profile-edu bg-light p-2">
+                <h2 class="text-primary">Education</h2>
+                @foreach (var item in Model.Account.Educations)
+                {
+                    <div>
+                        <h3>@item.School</h3>
+                        @{
+                            dynamic toDate = item.ToDate == null ? null : Convert.ToDateTime(item.ToDate).ToString("dd MMMM yyyy");
+                            toDate = toDate ?? "Current";
+                        }
+                        <p>@Convert.ToDateTime(item.FromDate).ToString("dd MMMM yyyy") - @toDate</p>
+                        <p><strong>Degree: </strong>@item.Degree</p>
+                        <p><strong>Field Of Study: </strong>@item.FieldOfStudy</p>
+                        <p>
+                            <strong>Description: </strong> @item.Description
+                        </p>
+                    </div>
+                }
+
+
+
+            </div>
+        }
+
+        @*    -----Github part------  *@
+
+    <div class="profile-github" id="repoID">
+        <h2 class="text-primary my-1">
+
+            <i class="fab fa-github"></i> Github Repositories
+        </h2>
+        <div id="dpUser"></div>
+
+    </div>
+
+    </div>
+</section>
+
+
+
+<script>
+    // Get the modal
+    let modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    let btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    let span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function () {
+        modal.style.display = "block";
+    };
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+
+
+    $(document).ready(function () {
+        getSocialLinks();
+    });
+
+
+
+
+    //fetching Github repositories of user
+    let username = '@Model.Account.Profile.GitHubUsername';
+    let repoID = $('#repoID');
+    let dp = $('#dpUser');
+    fetch(`https://api.github.com/users/${username}/repos`).then(result => {
+        return result.json();
+    }).then(result => {
+        init(result);
+    })
+    
+    function init(resultFromServer) {
+
+        
+
+
+        $.each(resultFromServer, function (i, result) {
+            repoID.append(`
+
+
+
+                      <div  class="repo bg-light my-1 p-1">
+                            <div>
+
+                                <h4><a href="${result.html_url}" target='_blank'>${i + 1} :- ${result.name} </a></h4>
+                                <p>
+                                    ${result.description}
+                                </p>
+                            </div>
+
+                            <div>
+                                <ul>
+                                    <li class="badge badge-primary">Stars: ${result.stargazers_count}</li>
+                                    <li class="badge badge-dark">Watchers: ${result.watchers}</li>
+                                    <li class="badge badge-light">Forks: ${result.forks}</li>
+                                </ul>
+                            </div>
+                     </div>
+
+
+
+
+
+                `)
+
+        });
+        dp.append(` <a href="${resultFromServer[0].owner.html_url}" target="_blank">
+                        <img class="round-img my-1" src="${resultFromServer[0].owner.avatar_url}" style="width:50px; margin:8px;" alt="image not found" />
+                    </a>
+                    <a href="${resultFromServer[0].owner.html_url}" target="_blank">
+                        <h3>${resultFromServer[0].owner.login}</h3>
+                    </a>
+
+
+`);
+
+       
+
+
+
+
+
+        console.log(resultFromServer);
+
+    }
+
+     
+   
+
+</script>
+
+
+

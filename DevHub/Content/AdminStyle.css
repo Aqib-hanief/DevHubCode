@@ -1,0 +1,142 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background: #ccc;
+    color: #333;
+    display: flex;
+}
+
+.container {
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.side-nav {
+    position: relative;
+    width:200px;
+    transition: 0.5s;
+    height: 100vh;
+    background: #333;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+    .side-nav .brand {
+        
+        background: dodgerblue;
+        padding: 60px 10px;
+        text-align: center;
+        
+    }
+
+.brand a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 2rem;
+    color: #fff;
+    text-transform: capitalize;
+    transition: 1s;
+}
+
+.side-nav ul {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    list-style: none;
+}
+
+    .side-nav ul li {
+        text-align: center;
+        background: dodgerblue;
+        padding: 20px 10px;
+        border-left: 7px solid rgb(255, 196, 0);
+        border-bottom: 1px solid #ccc;
+        cursor: pointer;
+        
+        display: flex;
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+
+    .side-nav ul li span{
+        margin-left: 8px;
+    }
+
+        .side-nav ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+.hide-sm {
+    
+    display: none;
+}
+
+
+
+.side-nav ul li:hover {
+    background: rgb(20, 96, 172);
+    border-color: rgb(226, 175, 8);
+}
+
+.backbtn {
+    width: 25px;
+    height: 45px;
+    background: black;
+    position: absolute;
+    right: -25px;
+    top: 48%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+}
+
+    .backbtn span {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+.toggle {
+    width:70px;
+}
+
+
+
+
+.main-content {
+    flex: 10;
+}
+
+.topNav {
+    padding: 0.9rem 2rem;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+    border-bottom: solid 1px dodgerblue;
+    background:#333;
+}
+
+    .topNav ul {
+        display: flex;       
+    }
+
+    .topNav a {
+        text-decoration: none;
+        color: #fff;
+        padding: 0.45rem;
+        margin: 0 0.25rem;
+    }
+
+    .topNav a:hover {
+        color:dodgerblue;
+    }

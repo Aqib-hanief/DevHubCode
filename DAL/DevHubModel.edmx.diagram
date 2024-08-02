@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b5fb31a9fdd442ae9b02a2dffe2cc0d6" Name="Diagram1">
+        <EntityTypeShape EntityType="DevHubDBModel.AccountConfirmation" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevHubDBModel.Account" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevHubDBModel.DevPost" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevHubDBModel.Discussion" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevHubDBModel.Education" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevHubDBModel.Experience" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevHubDBModel.Profession" Width="1.5" PointX="3.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevHubDBModel.Profile" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevHubDBModel.SocialLink" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
+        <AssociationConnector Association="DevHubDBModel.FK__AccountConfi__Id__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="DevHubDBModel.FK__DevPosts__Accoun__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="DevHubDBModel.FK__Discussio__Accou__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="DevHubDBModel.FK__Education__Accou__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="DevHubDBModel.FK__Experienc__Accou__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="DevHubDBModel.FK__Profiles__Accoun__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="DevHubDBModel.FK__SocialLin__Accou__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="DevHubDBModel.FK__Discussio__PostI__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="DevHubDBModel.FK__Profiles__Profes__286302EC" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

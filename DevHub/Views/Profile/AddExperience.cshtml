@@ -1,0 +1,59 @@
+﻿@model ModelLayer.ViewModels.AddexperienceVM
+
+@{
+    ViewBag.Title = "AddExperience";
+}
+
+
+
+<section class="container">
+    <h1 class="large text-primary">
+        Add An Experience
+    </h1>
+    <p class="lead">
+        <i class="fas fa-code-branch"></i> Add any developer/programming
+        positions that you have had in the past
+    </p>
+    <small class="text-danger">* = required fields</small>
+    <form class="form" action="/Profile/AddExperience" method="post">
+        <div class="form-group">
+            @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control", Placeholder = "* Job title" } })
+            @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control", Placeholder = "* Company" } })
+            @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control", Placeholder = "* Position"  } })
+            @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", Placeholder = "* Add location" } })
+            @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <h4>From Date</h4>
+            @Html.EditorFor(model => model.FromDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FromDate, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <h4>To Date</h4>
+            @Html.EditorFor(model => model.ToDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ToDate, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <p> @Html.CheckBoxFor(model => model.IsCurrentJob) Current Job</p>
+        </div>
+        <div class="form-group">
+            <textarea name="JobDescription"
+                      cols="30"
+                      rows="5"
+                      placeholder="Job Description" class="form-control" data-val="true" data-val-required="The JobDescription field is required." id="JobDescription"></textarea>
+            @Html.ValidationMessageFor(model => model.JobDescription, "", new { @class = "text-danger" })
+        </div>
+        <input type="submit" value="submit" class="btn btn-primary my-1" />
+        <a class="btn my-1" href="@Url.Action("Dashboard","Home")">Go Back</a>
+    </form>
+</section>

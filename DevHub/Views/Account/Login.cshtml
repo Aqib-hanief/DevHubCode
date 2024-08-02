@@ -1,0 +1,58 @@
+﻿@model ModelLayer.LoginVM
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<section class="container">
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Message
+        </div>
+    }
+    
+    <h1 class="large text-primary">
+        Sign In
+    </h1>
+    <p class="lead"><i class="fas fa-user"></i> sign into your account</p>
+    <form class="form" action="/Account/Login" method="post">
+        <div class="form-group">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder="Email Address" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <div class="relativeBox">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+                <i id="reveal" class="far fa-eye-slash"></i>
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.CheckBoxFor(model=>model.IsChecked) Remember me
+            @*<input type="checkbox" name="IsChecked" /> Remember me*@
+        </div>
+
+        <input type="submit" id="submit" value="Login" class="btn btn-primary" />
+    </form>
+
+    <p class="my-1">
+        Don't have an account? <a href="@Url.Action("SignUp","Account")">Sign Up</a>
+    </p>
+    <p class="my-1">
+        <a href="@Url.Action("ForgotPassword","Account")">Forgot Password?</a>
+    </p>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+C:\Data\DevHub\ModelLayer\bin\Debug\ModelLayer.dll
+C:\Data\DevHub\ModelLayer\bin\Debug\ModelLayer.pdb
+C:\Data\DevHub\ModelLayer\obj\Debug\ModelLayer.dll
+C:\Data\DevHub\ModelLayer\obj\Debug\ModelLayer.pdb
+C:\Data\DevHub\ModelLayer\obj\Debug\ModelLayer.csprojAssemblyReference.cache
+C:\Data\DevHub\ModelLayer\obj\Debug\ModelLayer.csproj.CoreCompileInputs.cache
